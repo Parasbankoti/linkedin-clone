@@ -22,6 +22,7 @@ export const Header = () => {
         <HeaderOptions Icon={SupervisorAccountIcon} title="My Network" />
         <HeaderOptions Icon={WorkIcon} title="Jobs" />
         <HeaderOptions Icon={NotificationsActiveIcon} title="Notification" />
+        <HeaderOptions avatar="avatar.jpg" title="Me" />
       </div>
     </div>
   );
