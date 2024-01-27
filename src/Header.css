@@ -6,7 +6,8 @@
   border-bottom: 0.1px solid lightgray;
   padding: 5px 0 5px 0;
   width: 100%;
-  z-index: 1;
+  z-index: 999;
+  background-color: white;
 }
 
 .header__left {
