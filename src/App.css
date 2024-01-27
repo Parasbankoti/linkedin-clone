@@ -1,3 +1,5 @@
 .app__body {
   display: flex;
+  background-color: whitesmoke !important;
+  padding: 10px;
 }
