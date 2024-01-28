@@ -4,7 +4,7 @@
   align-items: center;
   margin-right: 20px;
   color: gray;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .headerOptions:hover {

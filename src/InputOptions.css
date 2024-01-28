@@ -6,6 +6,7 @@
   display: flex;
   padding: 10px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .feed__icon {
@@ -19,5 +20,4 @@
   width: 90%;
   justify-content: space-evenly;
   color: gray;
-  cursor: pointer;
 }
