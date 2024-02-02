@@ -1,8 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-import firebase from "firebase/compat/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import "firebase/compat/firestore";
+import { getFirestore } from "firebase/firestore/lite";
+// import firebase from "firebase/compat/app";
+// import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+// import { getAuth } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js";
+
+// import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDq6PGQLH4MFAv4RRIy_zojISfJhpErF4U",
@@ -14,10 +18,17 @@ const firebaseConfig = {
   measurementId: "G-6EXWRBX15C",
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-// const db = getFirestore(app);
-const db = firebaseApp.firestore();
-const auth = getAuth();
+//const firebaseApp = firebase.initializeApp(firebaseConfig);
+//const firebaseApp = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+//const db = getFirestore(firebaseApp);
+//const db = firebaseApp.firestore();
+const auth = getAuth(app);
+
+//const auth = getAuth();
 //const signIn = signInWithEmailAndPassword;
 
-export { db, auth, signInWithEmailAndPassword };
+export { db, auth };
