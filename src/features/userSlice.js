@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: 0,
@@ -23,6 +23,6 @@ export const userSlice = createSlice({
 export const { login, logout } = userSlice.actions;
 
 //selectors to pull in info from store
-export const selectUser = (state) => state.user.value;
+export const selectUser = (state) => state.user.user;
 
 export default userSlice.reducer;

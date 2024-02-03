@@ -17,32 +17,31 @@ export const Login = () => {
   const user = useSelector(selectUser);
 
   const register = () => {
-    // if (!name) {
-    //   return alert("Please fill name");
-    // }
-    // if (!email) {np
-    //   return alert("Please fill email");
-    // }
-    const userCredential = createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    ).then((userAuth) => {
-      (userAuth.user.displayName = name), (userAuth.user.photoURL = profilePic);
-
-      const user = userAuth.user;
-      if (user) {
+    if (!name) {
+      return alert("Please fill name");
+    }
+    if (!email) {
+      return alert("Please fill email");
+    }
+    const userCredential = createUserWithEmailAndPassword(auth, email, password)
+      .then((userAuth) => {
+        userAuth.user.displayName = name;
+        userAuth.user.photoURL = profilePic;
+        console.log(userAuth);
+      })
+      .then(() => {
         dispatch(
           login({
-            email: user.email,
-            uid: user.uid,
+            user: name,
+            email: email,
             displayName: name,
             photoUrl: profilePic,
           })
         );
-      }
-    });
+      })
+      .catch((error) => alert(error.message));
   };
+
   // createUserWithEmailAndPassword(auth, email, password)
   //   .then((userAuth) => {
   //     return userAuth.user

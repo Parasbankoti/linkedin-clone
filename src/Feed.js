@@ -18,27 +18,31 @@ export const Feed = () => {
 
   const sendPost = (e) => {
     e.preventDefault();
-    db.collection("posts").add({
-      name: "parass bank",
-      description: "this is test",
-      message: input,
-      photoUrl: "",
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    db.collection("posts")
+      .add({
+        name: "parass bank",
+        description: "this is test",
+        message: input,
+        photoUrl: "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .catch((error) => alert(error));
     setInput("");
+    console.log("sent");
   };
 
   useEffect(() => {
     db.collection("posts")
       .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
+      .onSnapshot((snapshot) => {
+        console.log(snapshot);
         setPosts(
           snapshot.docs.map((doc) => ({
             id: doc.id,
             data: doc.data(),
           }))
-        )
-      );
+        );
+      });
   }, []);
 
   return (
