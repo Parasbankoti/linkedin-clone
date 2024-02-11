@@ -11,26 +11,26 @@ import { auth } from "./Firebase";
 function App() {
   // pull data from store using selector
 
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  // const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((userAuth) => {
-      console.log(userAuth);
-      if (userAuth) {
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-            photoUrl: userAuth.photoURL,
-          })
-        );
-      } else {
-        dispatch(logout);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((userAuth) => {
+  //     console.log(userAuth);
+  //     if (userAuth) {
+  //       dispatch(
+  //         login({
+  //           email: userAuth.email,
+  //           uid: userAuth.uid,
+  //           displayName: userAuth.displayName,
+  //           photoUrl: userAuth.photoURL,
+  //         })
+  //       );
+  //     } else {
+  //       dispatch(logout);
+  //     }
+  //   });
+  // }, []);
   return (
     <div className="App">
       {/* header */}

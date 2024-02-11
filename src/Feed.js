@@ -9,41 +9,56 @@ import {
 import { InputOptions } from "./InputOptions";
 import { blue, orange, red } from "@mui/material/colors";
 import { Post } from "./Post";
-import firebase from "firebase/compat/app";
 import { db } from "./Firebase";
+import { updateDoc, serverTimestamp } from "firebase/firestore";
 
 export const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
 
-  const sendPost = (e) => {
+  const sendPost = async (e) => {
     e.preventDefault();
-    db.collection("posts")
-      .add({
+    try {
+      const timestamp = await db.serverTimestamp();
+
+      const postData = {
         name: "parass bank",
         description: "this is test",
         message: input,
         photoUrl: "",
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-      .catch((error) => alert(error));
-    setInput("");
+        //timestamp: db.serverTimestamp(),
+      };
+      await db.collection("posts").add(postData);
+      setInput("");
+    } catch (error) {
+      console.log(error);
+    }
+    // db.collection("posts")
+    //   .add({
+    //     name: "parass bank",
+    //     description: "this is test",
+    //     message: input,
+    //     photoUrl: "",
+    //     timestamp: db.serverTimestamp(),
+    //   })
+    //   .catch((error) => alert(error));
+    // setInput("");
     console.log("sent");
   };
 
-  useEffect(() => {
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        console.log(snapshot);
-        setPosts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        );
-      });
-  }, []);
+  // useEffect(() => {
+  //   db.collection("posts")
+  //     .orderBy("timestamp", "desc")
+  //     .onSnapshot((snapshot) => {
+  //       console.log(snapshot);
+  //       setPosts(
+  //         snapshot.docs.map((doc) => ({
+  //           id: doc.id,
+  //           data: doc.data(),
+  //         }))
+  //       );
+  //     });
+  // }, []);
 
   return (
     <div className="feed">
